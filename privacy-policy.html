@@ -1,99 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privacy Policy — GLOWD</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy – GLOWD</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #fafaf9;
+      color: #1c1c1e;
+      line-height: 1.7;
+      font-size: 16px;
+    }
+    header {
+      border-bottom: 1px solid #e5e5ea;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #fff;
+    }
+    header .logo {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: #1c1c1e;
+      text-decoration: none;
+    }
+    header nav a {
+      font-size: 14px;
+      color: #636366;
+      text-decoration: none;
+      margin-left: 20px;
+    }
+    header nav a:hover { color: #1c1c1e; }
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.4px;
+      margin-bottom: 8px;
+    }
+    .meta {
+      font-size: 13px;
+      color: #8e8e93;
+      margin-bottom: 40px;
+    }
+    .tldr {
+      background: #f2f2f7;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-bottom: 36px;
+      font-size: 14px;
+      color: #3a3a3c;
+      line-height: 1.6;
+    }
+    .tldr strong { color: #1c1c1e; }
+    h2 {
+      font-size: 17px;
+      font-weight: 600;
+      margin-top: 36px;
+      margin-bottom: 10px;
+      color: #1c1c1e;
+    }
+    p { margin-bottom: 14px; color: #3a3a3c; }
+    ul, ol {
+      margin: 10px 0 14px 20px;
+      color: #3a3a3c;
+    }
+    li { margin-bottom: 6px; }
+    a { color: #007aff; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 20px;
+      font-size: 14px;
+    }
+    th {
+      text-align: left;
+      background: #f2f2f7;
+      padding: 10px 14px;
+      font-weight: 600;
+      font-size: 13px;
+      color: #1c1c1e;
+      border-bottom: 1px solid #d1d1d6;
+    }
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #e5e5ea;
+      color: #3a3a3c;
+      vertical-align: top;
+    }
+    footer {
+      border-top: 1px solid #e5e5ea;
+      text-align: center;
+      padding: 24px;
+      font-size: 13px;
+      color: #8e8e93;
+    }
+    footer a { color: #636366; margin: 0 8px; }
+  </style>
 </head>
 <body>
 
-<header class="site-header">
-  <a href="index.html"><span class="logo-text">GLOWD</span></a>
+<header>
+  <a class="logo" href="/">GLOWD</a>
+  <nav>
+    <a href="/privacy-policy.html">Privacy Policy</a>
+    <a href="/terms-of-use.html">Terms of Use</a>
+    <a href="/subscription-terms.html">Subscriptions</a>
+  </nav>
 </header>
-<nav>
-  <a href="privacy-policy.html" class="active">Privacy Policy</a>
-  <a href="terms-of-use.html">Terms of Use</a>
-  <a href="subscription-terms.html">Subscriptions</a>
-</nav>
 
-<div class="container">
+<main>
   <h1>Privacy Policy</h1>
-  <p class="subtitle">Effective date: March 21, 2026 &middot; Last updated: March 21, 2026</p>
+  <p class="meta">Effective date: March 21, 2026 · Last updated: March 21, 2026</p>
 
-  <p>GLOWD ("we," "us," or "our") is a facial harmony analysis app available on the Apple App Store. This Privacy Policy explains what information we collect (and, importantly, what we do not collect), how we use it, and your rights.</p>
-
-  <div class="callout">
-    <strong>The short version:</strong> GLOWD analyzes your face entirely on your device. Your photos and facial data never leave your phone. We do not operate servers, do not create user accounts, and do not sell or share any personal data.
+  <div class="tldr">
+    <strong>The short version:</strong> GLOWD analyzes your face entirely on your device. Your photos and facial data never leave your phone. We do not create user accounts and do not sell or share personal data. We use PostHog for anonymous usage analytics and RevenueCat for subscription management.
   </div>
 
   <h2>1. Information We Do Not Collect</h2>
-  <p>GLOWD is designed with a privacy-first architecture. We do <strong>not</strong>:</p>
+  <p>GLOWD is designed with a privacy-first architecture. We do not:</p>
   <ul>
     <li>Upload, transmit, or store your photos on any server</li>
     <li>Collect, store, or share biometric data (facial geometry, landmarks, or measurements) outside your device</li>
     <li>Require or create user accounts</li>
     <li>Collect your name, email address, phone number, or any personally identifiable information</li>
-    <li>Use cookies, tracking pixels, or advertising identifiers</li>
-    <li>Share data with third-party analytics, advertising, or AI services</li>
-    <li>Collect precise location data</li>
+    <li>Use cookies, tracking pixels, or advertising networks</li>
+    <li>Track your location</li>
+    <li>Log your facial data or analysis results on our servers</li>
   </ul>
+  <p>All facial analysis happens entirely on your device using MediaPipe (by Google), running fully offline. Your data never leaves your phone.</p>
 
   <h2>2. On-Device Processing</h2>
-  <p>All facial analysis — including facial landmark detection, ratio calculation, and scoring — is performed entirely on your device using Apple's built-in Vision framework. Specifically:</p>
-  <ul>
-    <li><strong>Photos</strong> you take or select from your library are processed locally and are never uploaded to any external server.</li>
-    <li><strong>Facial landmark coordinates</strong> (76 points detected by Apple Vision) are used only for ratio calculation during the analysis session. They are not transmitted off-device.</li>
-    <li><strong>Scan results</strong> (scores, ratio values) are stored locally on your device using Apple's SwiftData framework, so you can view your scan history. This data remains on your device unless you choose to delete it.</li>
-  </ul>
+  <p>When you take or upload a photo:</p>
+  <ol>
+    <li>MediaPipe detects up to 468 facial landmarks on your device, entirely offline</li>
+    <li>GLOWD calculates 13 facial ratios (proportions) from those landmarks</li>
+    <li>A scoring algorithm compares your ratios to statistical baselines</li>
+    <li>You see the results, including your Harmony Index score</li>
+  </ol>
+  <p>This entire process occurs locally on your device. No photos, landmarks, ratios, or results are transmitted to GLOWD servers or any third party.</p>
 
-  <h2>3. Biometric Data</h2>
-  <p>GLOWD processes facial geometry to calculate proportional ratios. In certain jurisdictions (such as Illinois under BIPA, Texas under CUBI, or the European Union under GDPR), facial geometry data may be classified as "biometric data" or "biometric identifiers."</p>
-  <p>We want to be clear about our practices:</p>
-  <ul>
-    <li>Facial geometry data is processed <strong>exclusively on your device</strong>.</li>
-    <li>We <strong>never collect, store, transmit, sell, lease, or trade</strong> biometric data.</li>
-    <li>We <strong>do not use</strong> facial geometry data to identify you or any other individual.</li>
-    <li>Facial landmark coordinates are used solely to compute mathematical ratios and are not retained beyond the analysis session, except as part of saved scan results (scores and ratio values stored locally on your device).</li>
-  </ul>
-  <p>Because all biometric processing occurs on-device and no biometric data is ever collected by us, there is no biometric data for us to retain, disclose, or protect against unauthorized access on our servers.</p>
+  <h2>3. Local Data Storage</h2>
+  <p>All scan results (scores and ratio values) are stored locally on your device only. Because all biometric processing occurs on-device and no biometric data is ever collected by us, there is no biometric data for us to retain, disclose, or protect on our servers.</p>
 
   <h2>4. Camera and Photo Library Access</h2>
   <p>GLOWD requests access to your device's camera and/or photo library solely for the purpose of capturing or selecting a photo for facial analysis. We use Apple's standard permission prompts. You can revoke these permissions at any time via your device's Settings app. When you deny camera or photo access, you can still use other features of the app, but facial analysis will not be available.</p>
 
   <h2>5. Purchase Information</h2>
-  <p>If you subscribe to GLOWD's premium features, the transaction is processed entirely by Apple through the App Store. We do <strong>not</strong> receive, process, or store your payment information (credit card number, billing address, etc.). We may receive anonymized transaction confirmations from Apple (such as whether a subscription is active) to unlock premium features, but these do not contain personally identifiable financial information.</p>
+  <p>If you subscribe to GLOWD's premium features, the payment transaction is processed entirely by Apple through the App Store. We do not receive, process, or store your payment information (credit card number, billing address, etc.).</p>
+  <p>We use <strong>RevenueCat</strong> to manage subscription entitlements. RevenueCat receives an anonymous app user ID (a randomly generated UUID), your subscription status, and purchase receipts from Apple — but no payment card details, photos, or biometric data. RevenueCat's privacy policy is available at <a href="https://www.revenuecat.com/privacy" target="_blank">revenuecat.com/privacy</a>.</p>
 
-  <h2>6. Third-Party Services</h2>
-  <p>GLOWD uses the following third-party service:</p>
+  <h2>6. Analytics</h2>
+  <p>GLOWD uses PostHog for analytics to understand how users interact with the app (e.g., which features are used, where users encounter errors). This helps us improve the product. PostHog collects:</p>
   <ul>
-    <li><strong>RevenueCat</strong> — for subscription management and receipt validation. RevenueCat processes anonymized purchase receipts from Apple and does not receive any biometric data, photos, or personally identifiable information from GLOWD. You can review RevenueCat's privacy policy at <a href="https://www.revenuecat.com/privacy/" target="_blank" rel="noopener">revenuecat.com/privacy</a>.</li>
+    <li>Anonymous usage events (feature opens, button taps, onboarding steps)</li>
+    <li>Device type and OS version</li>
+    <li>App version and crash logs</li>
+    <li>Self-reported gender (selected during onboarding, stored as an anonymous user property)</li>
+    <li>Onboarding quiz responses (interest level, app familiarity — stored anonymously)</li>
+    <li>Aggregate facial harmony scores (your overall Harmony Index score and per-ratio scores, not linked to your identity or photos)</li>
+    <li>Subscription tier (free or premium)</li>
+    <li>Days since first install and number of scans performed</li>
   </ul>
-  <p>We do not integrate any advertising SDKs, analytics trackers, or other third-party services that collect personal data.</p>
+  <p>PostHog does <strong>not</strong> collect:</p>
+  <ul>
+    <li>Your photos or facial landmark data</li>
+    <li>Any personally identifiable information (name, email, phone number)</li>
+    <li>Your payment information</li>
+    <li>Your location</li>
+  </ul>
+  <p>Screen-view tracking is disabled in our PostHog configuration. You can view PostHog's privacy policy at <a href="https://posthog.com/privacy" target="_blank">posthog.com/privacy</a>.</p>
 
-  <h2>7. Data Storage and Deletion</h2>
-  <p>Your scan history (scores, ratio values, dates) is stored locally on your device using Apple's SwiftData framework. You can delete individual scans or all scan data at any time from within the app. Uninstalling GLOWD automatically removes all locally stored data.</p>
-  <p>Because we do not operate servers or databases, there is no cloud-stored data to delete. Your data exists only on your device and is entirely under your control.</p>
+  <h2>7. Third-Party Services</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Service</th>
+        <th>Purpose</th>
+        <th>Data received</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>MediaPipe</strong> (Google)</td>
+        <td>On-device facial landmark detection</td>
+        <td>Runs entirely on your device; no data is sent to Google</td>
+      </tr>
+      <tr>
+        <td><strong>PostHog</strong></td>
+        <td>Anonymous usage analytics</td>
+        <td>See Section 6 above. <a href="https://posthog.com/privacy" target="_blank">PostHog privacy policy</a></td>
+      </tr>
+      <tr>
+        <td><strong>RevenueCat</strong></td>
+        <td>Subscription management and entitlement verification</td>
+        <td>Anonymous app user ID, subscription status, purchase receipts. No payment card data, photos, or biometric data. <a href="https://www.revenuecat.com/privacy" target="_blank">RevenueCat privacy policy</a></td>
+      </tr>
+      <tr>
+        <td><strong>Apple App Store</strong></td>
+        <td>Payment processing and app distribution</td>
+        <td>Apple handles all payment data; we receive only subscription receipts via RevenueCat</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>None of these services receive your photos or biometric data.</p>
 
-  <h2>8. Children's Privacy</h2>
-  <p>GLOWD is intended for users aged 18 and older. We do not knowingly collect information from children under 18. The app includes an age confirmation step during onboarding. If you believe a child under 18 is using the app, please contact us and we will take appropriate steps.</p>
+  <h2>8. Data Retention</h2>
+  <p>Because all analysis happens on your device and we do not collect your personal or biometric data, there is nothing for us to retain on our servers. Scan history is stored locally on your device and can be deleted at any time through the app's settings. Anonymous PostHog analytics events are retained per PostHog's standard data retention policy.</p>
 
-  <h2>9. International Users</h2>
-  <p>GLOWD is available on the App Store in the United States and other countries. Because all data processing occurs on your device and we do not collect or transfer personal data, there are no cross-border data transfers to disclose.</p>
-  <p>For users in the <strong>European Economic Area (EEA)</strong>: because we do not collect personal data, GDPR data subject rights (access, rectification, erasure, portability, restriction) do not require action on our part — your data is already entirely in your hands, on your device.</p>
-  <p>For users in <strong>California</strong>: under the CCPA/CPRA, you have the right to know what personal information is collected. We confirm that we do not collect, sell, or share personal information as defined by California law.</p>
+  <h2>9. International Data Transfers</h2>
+  <p>All biometric data processing occurs on your device. Anonymous analytics events collected by PostHog may be transferred to and stored on servers in the United States in accordance with PostHog's privacy policy.</p>
+  <p><strong>For users in the European Economic Area (EEA):</strong> because we do not collect personal data as defined under GDPR, data subject rights (access, rectification, erasure, portability, restriction) do not require action on our part — your biometric and photo data is entirely in your hands, on your device.</p>
+  <p><strong>For users in California:</strong> under the CCPA/CPRA, you have the right to know what personal information is collected. We confirm that we do not collect, sell, or share personal information as defined by California law. The anonymous analytics data described in Section 6 is not "personal information" as defined by the CCPA.</p>
 
   <h2>10. Changes to This Policy</h2>
   <p>If we make material changes to this Privacy Policy, we will update the "Last updated" date at the top and, where practicable, notify users through the app. Continued use of GLOWD after changes become effective constitutes acceptance of the updated policy.</p>
 
   <h2>11. Contact Us</h2>
   <p>If you have questions about this Privacy Policy or our privacy practices, please contact us at:</p>
-  <p><strong>Email:</strong> <a href="mailto:support@glowd.tech">support@glowd.tech</a></p>
-</div>
+  <p>Email: <a href="mailto:glowdapp@gmail.com">glowdapp@gmail.com</a></p>
+</main>
 
-<footer class="site-footer">
-  <p>&copy; 2026 GLOWD. All rights reserved.</p>
-  <p><a href="index.html">Home</a> &middot; <a href="terms-of-use.html">Terms</a> &middot; <a href="subscription-terms.html">Subscriptions</a></p>
+<footer>
+  <p>© 2026 GLOWD. All rights reserved.</p>
+  <p style="margin-top:8px;">
+    <a href="/index.html">Home</a>
+    <a href="/terms-of-use.html">Terms</a>
+    <a href="/subscription-terms.html">Subscriptions</a>
+  </p>
 </footer>
 
 </body>
