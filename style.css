@@ -1,0 +1,169 @@
+/* GLOWD Legal Pages — Brand-matched stylesheet */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Serif+Display&display=swap');
+
+:root {
+  --bg: #F5F0E8;
+  --bg-card: #EDEADE;
+  --text: #2C2C2C;
+  --text-muted: #7A7A6E;
+  --accent: #3D6B4F;
+  --accent-light: #E8F0EA;
+  --border: #D6D2C4;
+  --max-w: 720px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  font-size: 17px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'DM Sans', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 5rem;
+}
+
+/* Header */
+.site-header {
+  text-align: center;
+  padding: 2.5rem 1.5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.site-header a {
+  text-decoration: none;
+  color: var(--text);
+}
+.logo-text {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+/* Navigation */
+nav {
+  text-align: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+nav a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+  margin: 0 0.75rem;
+  transition: color 0.2s;
+}
+nav a:hover,
+nav a.active {
+  color: var(--accent);
+}
+
+/* Content */
+h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+  line-height: 1.25;
+}
+.subtitle {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 2.5rem;
+}
+h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.35rem;
+  font-weight: 400;
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+  color: var(--text);
+}
+h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+p {
+  margin-bottom: 1rem;
+}
+ul, ol {
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+}
+li {
+  margin-bottom: 0.4rem;
+}
+a {
+  color: var(--accent);
+}
+strong {
+  font-weight: 600;
+}
+
+/* Callout box */
+.callout {
+  background: var(--bg-card);
+  border-left: 3px solid var(--accent);
+  padding: 1rem 1.25rem;
+  border-radius: 0 8px 8px 0;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+}
+
+/* Footer */
+.site-footer {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+.site-footer a {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+.site-footer a:hover {
+  color: var(--accent);
+}
+
+/* Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0 1.5rem;
+  font-size: 0.95rem;
+}
+th, td {
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+th {
+  font-weight: 600;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  html { font-size: 16px; }
+  .container { padding: 2rem 1.25rem 4rem; }
+  h1 { font-size: 1.65rem; }
+  nav a { margin: 0 0.4rem; font-size: 0.8rem; }
+}
