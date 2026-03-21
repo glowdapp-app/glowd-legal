@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support – GLOWD</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f2eb;
+            color: #1a1a1a;
+            line-height: 1.7;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.25rem 2rem;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            background: #f5f2eb;
+        }
+
+        nav a {
+            color: #1a1a1a;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        nav .logo {
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 0.15em;
+        }
+
+        nav .links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        nav .links a {
+            opacity: 0.6;
+            transition: opacity 0.2s;
+        }
+
+        nav .links a:hover,
+        nav .links a.active {
+            opacity: 1;
+        }
+
+        main {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem 4rem;
+            flex: 1;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 2.5rem;
+            font-size: 1.05rem;
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        p, li {
+            margin-bottom: 0.75rem;
+            color: #333;
+        }
+
+        ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        a {
+            color: #3a6b4c;
+        }
+
+        .contact-box {
+            background: #fff;
+            border-radius: 12px;
+            padding: 1.75rem;
+            margin-top: 2rem;
+            border: 1px solid rgba(0,0,0,0.06);
+        }
+
+        .contact-box h2 {
+            margin-top: 0;
+        }
+
+        .contact-box a {
+            font-weight: 600;
+        }
+
+        .faq-item {
+            margin-bottom: 1.75rem;
+        }
+
+        .faq-item strong {
+            display: block;
+            margin-bottom: 0.25rem;
+            color: #1a1a1a;
+        }
+
+        .faq-item p {
+            margin-bottom: 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.85rem;
+            color: #999;
+            border-top: 1px solid rgba(0,0,0,0.06);
+        }
+
+        footer a {
+            color: #999;
+            text-decoration: none;
+            margin: 0 0.5rem;
+        }
+
+        footer a:hover {
+            color: #666;
+        }
+
+        @media (max-width: 600px) {
+            nav { padding: 1rem; }
+            nav .links { gap: 1rem; font-size: 0.8rem; }
+            main { padding: 2rem 1rem 3rem; }
+            h1 { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="https://glowd.tech/" class="logo">GLOWD</a>
+        <div class="links">
+            <a href="https://glowd.tech/privacy-policy.html">Privacy Policy</a>
+            <a href="https://glowd.tech/terms-of-use.html">Terms of Use</a>
+            <a href="https://glowd.tech/subscription-terms.html">Subscriptions</a>
+        </div>
+    </nav>
+
+    <main>
+        <h1>Support</h1>
+        <p class="subtitle">Have a question or need help with GLOWD? We're here for you.</p>
+
+        <h2>Frequently Asked Questions</h2>
+
+        <div class="faq-item">
+            <strong>How does GLOWD analyze my face?</strong>
+            <p>GLOWD detects 468 facial landmarks on your device using MediaPipe and calculates 11 key ratios. Each ratio is scored against gender-specific ideal ranges using a bell curve. All processing happens entirely on your device — your photo never leaves your phone.</p>
+        </div>
+
+        <div class="faq-item">
+            <strong>Why is my score different from other apps?</strong>
+            <p>Every app uses different methods. GLOWD uses transparent, mathematical ratios based on the Golden Ratio (φ = 1.618) and shows you exactly how each ratio is measured and scored. The same photo will always produce the same score in GLOWD.</p>
+        </div>
+
+        <div class="faq-item">
+            <strong>Is my photo uploaded anywhere?</strong>
+            <p>No. Your photo is analyzed 100% on-device and is never uploaded to any server. We have no backend that stores your images or facial data. See our <a href="https://glowd.tech/privacy-policy.html">Privacy Policy</a> for full details.</p>
+        </div>
+
+        <div class="faq-item">
+            <strong>How do I cancel my subscription?</strong>
+            <p>Open your iPhone Settings → tap your name → Subscriptions → select GLOWD → Cancel Subscription. You'll keep access until the end of your current billing period. See our <a href="https://glowd.tech/subscription-terms.html">Subscription Terms</a> for more information.</p>
+        </div>
+
+        <div class="faq-item">
+            <strong>How do I request a refund?</strong>
+            <p>Refunds are handled by Apple. Visit <a href="https://reportaproblem.apple.com" target="_blank" rel="noopener">reportaproblem.apple.com</a>, sign in with your Apple ID, find your GLOWD purchase, and request a refund.</p>
+        </div>
+
+        <div class="faq-item">
+            <strong>How do I delete my scan history?</strong>
+            <p>Open GLOWD → go to Your Scans → swipe left on any scan to delete it. Since all data is stored locally on your device, deleting the app also removes all data permanently.</p>
+        </div>
+
+        <div class="faq-item">
+            <strong>What does my Harmony score mean?</strong>
+            <p>Your Harmony score (1–10) is an average of 11 individual ratio scores, each measuring how close a facial proportion is to the mathematical ideal. It's one perspective on facial proportions — not a measure of your worth or attractiveness.</p>
+        </div>
+
+        <div class="contact-box">
+            <h2>Still need help?</h2>
+            <p>Send us an email and we'll get back to you within 24 hours.</p>
+            <p><a href="mailto:glowdapp@gmail.com">glowdapp@gmail.com</a></p>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2026 GLOWD. All rights reserved.</p>
+        <p>
+            <a href="https://glowd.tech/">Home</a>
+            <a href="https://glowd.tech/terms-of-use.html">Ter
