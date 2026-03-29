@@ -14,23 +14,21 @@
 <meta property="og:image" content="app-icon.png">
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
     --page: #FAF8F5;
     --card: #F0EDE8;
-    --card-hover: #E8E4DD;
     --text-primary: #2C2A26;
     --text-secondary: #8C8578;
     --text-muted: #C8C2B8;
-    --text-description: #5F5E5A;
     --border-divider: #E0DBD4;
-    --border-subtle: #D5D0C8;
     --brand-primary: #6B8F71;
     --brand-soft: #E8F0E9;
     --brand-strong: #4A6B4E;
+    --brand-deep: #2E4A32;
     --cta-bg: #2C2A26;
     --cta-text: #FAF8F5;
     --amber: #C4A265;
@@ -58,13 +56,164 @@
     min-height: 100dvh;
   }
 
-  /* ── App Icon ── */
+  /* ═══════════════════════════════════════════
+     TIKTOK VIEW — Arrow-first layout
+     ═══════════════════════════════════════════ */
+
+  .tiktok-view {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: 100dvh;
+    padding-bottom: 32px;
+  }
+  .tiktok-view.active { display: flex; }
+
+  /* ── Arrow Section (top) ── */
+  .arrow-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-right: 8px;
+    padding-top: 6px;
+    position: relative;
+  }
+
+  .arrow-wrap {
+    position: relative;
+    width: 100px;
+    height: 110px;
+    transition: filter 0.3s ease;
+  }
+
+  /* The curved hand-drawn style arrow */
+  .arrow-wrap svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 2px 8px rgba(44,42,38,0.15));
+  }
+
+  /* Pulsing ring behind arrow on activation */
+  .arrow-pulse {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--brand-primary);
+    opacity: 0;
+    transform: scale(0.5);
+    pointer-events: none;
+    transition: none;
+  }
+  .arrow-pulse.ping {
+    animation: arrowPing 1s ease-out forwards;
+  }
+  @keyframes arrowPing {
+    0% { opacity: 0.5; transform: scale(0.5); }
+    100% { opacity: 0; transform: scale(2.5); }
+  }
+
+  /* Arrow bounce */
+  .arrow-bounce {
+    animation: arrowFloat 2s ease-in-out infinite;
+  }
+  @keyframes arrowFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  /* Intensified arrow animation on CTA tap */
+  .arrow-highlight .arrow-bounce {
+    animation: arrowShake 0.4s ease-in-out 3;
+  }
+  @keyframes arrowShake {
+    0%, 100% { transform: translateY(0) scale(1); }
+    25% { transform: translateY(-12px) scale(1.1); }
+    75% { transform: translateY(-4px) scale(1.05); }
+  }
+
+  .arrow-highlight svg path,
+  .arrow-highlight svg line {
+    stroke: var(--brand-strong) !important;
+  }
+
+  /* ── Big instruction text ── */
+  .hero-instruction {
+    width: 100%;
+    text-align: center;
+    margin-top: -4px;
+  }
+
+  .hero-tap {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .hero-dots {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: var(--cta-bg);
+    color: white;
+    border-radius: 50%;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    line-height: 1;
+  }
+
+  .hero-open {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--brand-strong);
+    margin-top: 6px;
+    line-height: 1.1;
+    position: relative;
+  }
+
+  /* Underline decoration */
+  .hero-open-underline {
+    display: block;
+    width: 90%;
+    height: 4px;
+    background: var(--brand-primary);
+    border-radius: 2px;
+    margin: 4px auto 0;
+    opacity: 0.35;
+  }
+
+  .hero-sub {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-top: 8px;
+  }
+
+  /* ── App info section ── */
+  .app-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 28px;
+    width: 100%;
+  }
+
   .app-icon {
-    width: 88px;
-    height: 88px;
-    border-radius: 20px;
-    margin-top: 48px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+    width: 80px;
+    height: 80px;
+    border-radius: 18px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
     overflow: hidden;
   }
   .app-icon img {
@@ -74,283 +223,86 @@
   }
 
   .app-name {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 700;
-    letter-spacing: 1.5px;
-    margin-top: 16px;
+    letter-spacing: 1.2px;
+    margin-top: 12px;
     color: var(--text-primary);
   }
 
   .app-tagline {
-    font-size: 14px;
+    font-size: 13px;
     color: var(--text-secondary);
-    margin-top: 6px;
+    margin-top: 4px;
     text-align: center;
     line-height: 1.5;
   }
 
-  /* ── Rating Badge ── */
   .rating-badge {
     display: flex;
     align-items: center;
     gap: 6px;
-    margin-top: 14px;
-    padding: 6px 14px;
+    margin-top: 10px;
+    padding: 5px 12px;
     background: var(--card);
     border-radius: 20px;
-    font-size: 13px;
+    font-size: 12px;
     color: var(--text-secondary);
   }
   .rating-badge .stars {
     color: var(--amber);
-    font-size: 12px;
+    font-size: 11px;
     letter-spacing: 1px;
   }
 
-  /* ── Instruction Card (TikTok) ── */
-  .instruction-card {
-    width: 100%;
-    background: var(--card);
-    border-radius: 16px;
-    padding: 28px 24px;
-    margin-top: 28px;
-    border: 1px solid var(--border-divider);
-    position: relative;
-  }
-
-  .instruction-title {
-    font-size: 18px;
-    font-weight: 600;
-    text-align: center;
-    color: var(--text-primary);
-    margin-bottom: 4px;
-  }
-
-  .instruction-subtitle {
-    font-size: 13px;
-    color: var(--text-secondary);
-    text-align: center;
-    margin-bottom: 24px;
-    line-height: 1.5;
-  }
-
-  .steps {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .step {
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-  }
-
-  .step-num {
-    width: 28px;
-    height: 28px;
-    min-width: 28px;
-    border-radius: 50%;
-    background: var(--cta-bg);
-    color: var(--cta-text);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 13px;
-    font-weight: 600;
-  }
-
-  .step-text {
-    font-size: 14px;
-    color: var(--text-primary);
-    line-height: 1.55;
-    padding-top: 3px;
-  }
-  .step-text strong {
-    font-weight: 600;
-  }
-  .step-text .highlight {
-    color: var(--brand-strong);
-    font-weight: 600;
-  }
-
-  /* ── CTA Button ── */
+  /* ── CTA Button (App Store style) ── */
   .cta-btn {
     width: 100%;
-    height: 52px;
+    height: 54px;
     border: none;
-    border-radius: 10px;
+    border-radius: 12px;
     background: var(--cta-bg);
     color: var(--cta-text);
     font-family: inherit;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 600;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    margin-top: 24px;
-    transition: transform 0.15s ease, opacity 0.15s ease;
+    gap: 10px;
+    margin-top: 20px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
     -webkit-tap-highlight-color: transparent;
     text-decoration: none;
+    position: relative;
+    overflow: hidden;
   }
   .cta-btn:active {
     transform: scale(0.97);
-    opacity: 0.9;
   }
   .cta-btn svg {
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
   }
 
-  /* ── Animated Arrow Overlay ── */
-  .arrow-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1000;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  .arrow-overlay.visible {
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  .arrow-overlay-bg {
-    position: absolute;
-    inset: 0;
-    background: rgba(44, 42, 38, 0.55);
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
-  }
-
-  .arrow-content {
+  /* Shine sweep on CTA */
+  .cta-btn::after {
+    content: '';
     position: absolute;
     top: 0;
-    right: 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    padding-top: 10px;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+    animation: ctaSweep 3s ease-in-out infinite;
+  }
+  @keyframes ctaSweep {
+    0%, 70%, 100% { left: -100%; }
+    85% { left: 150%; }
   }
 
-  .arrow-svg {
-    width: 60px;
-    height: 80px;
-    animation: bounceArrow 1.2s ease-in-out infinite;
-  }
-
-  @keyframes bounceArrow {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-  }
-
-  .arrow-label {
-    background: white;
-    color: var(--text-primary);
-    padding: 12px 18px;
-    border-radius: 12px;
-    font-size: 14px;
-    font-weight: 600;
-    text-align: center;
-    max-width: 220px;
-    line-height: 1.45;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
-    margin-top: 4px;
-  }
-
-  .arrow-dismiss {
-    position: absolute;
-    bottom: 80px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: white;
-    color: var(--text-primary);
-    border: none;
-    padding: 14px 32px;
-    border-radius: 10px;
-    font-family: inherit;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    pointer-events: auto;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.1);
-  }
-
-  /* ── App Store Badge ── */
-  .appstore-badge {
-    margin-top: 20px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 20px;
-    background: #000;
-    border-radius: 10px;
-    text-decoration: none;
-    transition: transform 0.15s ease;
-  }
-  .appstore-badge:active {
-    transform: scale(0.97);
-  }
-  .appstore-badge svg {
-    width: 22px;
-    height: 22px;
-  }
-  .appstore-badge-text {
-    display: flex;
-    flex-direction: column;
-    line-height: 1.15;
-  }
-  .appstore-badge-text .top {
-    font-size: 9px;
-    color: #ccc;
-    letter-spacing: 0.3px;
-  }
-  .appstore-badge-text .bottom {
-    font-size: 16px;
-    font-weight: 600;
-    color: #fff;
-    letter-spacing: -0.2px;
-  }
-
-  /* ── Trust Signals ── */
-  .trust-row {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-top: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .trust-item {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 12px;
-    color: var(--text-secondary);
-  }
-  .trust-item svg {
-    width: 14px;
-    height: 14px;
-    color: var(--brand-primary);
-  }
-
-  /* ── Footer ── */
-  .footer {
-    margin-top: auto;
-    padding: 24px 0 32px;
-    text-align: center;
-    font-size: 12px;
-    color: var(--text-muted);
-    line-height: 1.6;
-  }
-
-  /* ── Features grid ── */
+  /* ── Features ── */
   .features {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -381,34 +333,115 @@
     line-height: 1.4;
   }
 
-  /* ── Redirect view (Safari/Chrome) ── */
+  /* ── Trust Signals ── */
+  .trust-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    color: var(--text-secondary);
+  }
+  .trust-item svg {
+    width: 13px;
+    height: 13px;
+    color: var(--brand-primary);
+  }
+
+  /* ── Footer ── */
+  .footer {
+    margin-top: auto;
+    padding: 20px 0 28px;
+    text-align: center;
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* ═══════════════════════════════════════════
+     REDIRECT VIEW (Safari / Chrome)
+     ═══════════════════════════════════════════ */
   .redirect-view {
     display: none;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding-top: 20px;
     width: 100%;
+    padding-bottom: 32px;
   }
   .redirect-view.active { display: flex; }
 
-  .tiktok-view { display: none; flex-direction: column; align-items: center; width: 100%; }
-  .tiktok-view.active { display: flex; }
+  .redirect-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 18px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-top: 60px;
+  }
+  .redirect-icon img { width: 100%; height: 100%; display: block; }
+
+  .redirect-name {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    margin-top: 14px;
+  }
+
+  .redirect-tagline {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+  }
 
   .spinner {
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
     border: 3px solid var(--border-divider);
     border-top-color: var(--brand-primary);
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
-    margin-top: 24px;
+    margin-top: 28px;
   }
   @keyframes spin { to { transform: rotate(360deg); } }
 
   .redirect-text {
     font-size: 14px;
     color: var(--text-secondary);
+    margin-top: 12px;
+  }
+
+  .appstore-badge {
+    margin-top: 28px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    background: #000;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: transform 0.15s ease;
+  }
+  .appstore-badge:active { transform: scale(0.97); }
+  .appstore-badge svg { width: 22px; height: 22px; }
+  .appstore-badge-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+  }
+  .appstore-badge-text .top { font-size: 9px; color: #ccc; letter-spacing: 0.3px; }
+  .appstore-badge-text .bottom { font-size: 16px; font-weight: 600; color: #fff; letter-spacing: -0.2px; }
+
+  .redirect-fallback {
+    font-size: 13px;
+    color: var(--text-muted);
     margin-top: 14px;
   }
 </style>
@@ -416,50 +449,64 @@
 <body>
 
 <div class="container">
-  <!-- ═══════════════ COMMON HEADER ═══════════════ -->
-  <div class="app-icon">
-    <img src="app-icon.png" alt="GLOWD App Icon" width="88" height="88">
-  </div>
-
-  <div class="app-name">GLOWD</div>
-  <div class="app-tagline">AI Golden Ratio & Facial Harmony Analysis</div>
-
-  <div class="rating-badge">
-    <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-    <span>4.9 · 2K+ ratings</span>
-  </div>
 
   <!-- ═══════════════ TIKTOK IN-APP VIEW ═══════════════ -->
   <div class="tiktok-view" id="tiktokView">
-    <div class="instruction-card">
-      <div class="instruction-title">Open in Safari to continue</div>
-      <div class="instruction-subtitle">TikTok's browser can't open the App Store directly. It takes 5 seconds:</div>
 
-      <div class="steps">
-        <div class="step">
-          <div class="step-num">1</div>
-          <div class="step-text">Tap the <strong>button below</strong> — it will show you exactly where to tap</div>
-        </div>
-        <div class="step">
-          <div class="step-num">2</div>
-          <div class="step-text">Tap <span class="highlight">⋯</span> or <span class="highlight">Share</span> at the bottom right corner</div>
-        </div>
-        <div class="step">
-          <div class="step-num">3</div>
-          <div class="step-text">Select <span class="highlight">"Open in Safari"</span></div>
+    <!-- Arrow always visible, pointing top-right to ⋯ -->
+    <div class="arrow-section" id="arrowSection">
+      <div class="arrow-wrap">
+        <div class="arrow-pulse" id="arrowPulse"></div>
+        <div class="arrow-bounce" id="arrowBounce">
+          <svg viewBox="0 0 100 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Curved arrow path pointing up-right -->
+            <path d="M25 100 C 25 55, 40 30, 75 15" stroke="var(--text-primary)" stroke-width="4" stroke-linecap="round" fill="none"/>
+            <!-- Arrowhead -->
+            <path d="M65 8 L78 12 L72 25" stroke="var(--text-primary)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <!-- Dot at the tip for emphasis -->
+            <circle cx="78" cy="12" r="3" fill="var(--text-primary)" opacity="0.4">
+              <animate attributeName="r" values="3;6;3" dur="1.5s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.4;0.15;0.4" dur="1.5s" repeatCount="indefinite"/>
+            </circle>
+          </svg>
         </div>
       </div>
     </div>
 
-    <button class="cta-btn" id="showArrowBtn" onclick="showArrowGuide()">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
-        <polyline points="15 3 21 3 21 9"/>
-        <line x1="10" y1="14" x2="21" y2="3"/>
+    <!-- Big hero instruction text -->
+    <div class="hero-instruction">
+      <div class="hero-tap">
+        Tap <span class="hero-dots">···</span>
+      </div>
+      <div class="hero-open">
+        "Open in Browser"
+        <span class="hero-open-underline"></span>
+      </div>
+      <div class="hero-sub">to install</div>
+    </div>
+
+    <!-- App info -->
+    <div class="app-section">
+      <div class="app-icon">
+        <img src="app-icon.png" alt="GLOWD" width="80" height="80">
+      </div>
+      <div class="app-name">GLOWD</div>
+      <div class="app-tagline">AI Golden Ratio & Facial Harmony Analysis</div>
+      <div class="rating-badge">
+        <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <span>4.9 · 2K+ ratings</span>
+      </div>
+    </div>
+
+    <!-- CTA: looks like App Store download, triggers arrow animation -->
+    <button class="cta-btn" id="ctaBtn" onclick="highlightArrow()">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
       </svg>
-      Show me where to tap
+      Download on the App Store
     </button>
 
+    <!-- Features -->
     <div class="features">
       <div class="feature">
         <div class="feature-icon">📐</div>
@@ -483,16 +530,7 @@
       </div>
     </div>
 
-    <a href="https://apps.apple.com/app/glowd-golden-ratio-glow-up/id6760931929" class="appstore-badge" id="appstoreBadgeTiktok">
-      <svg viewBox="0 0 24 24" fill="white">
-        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-      </svg>
-      <div class="appstore-badge-text">
-        <span class="top">Download on the</span>
-        <span class="bottom">App Store</span>
-      </div>
-    </a>
-
+    <!-- Trust -->
     <div class="trust-row">
       <div class="trust-item">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
@@ -507,14 +545,25 @@
         No Data Collected
       </div>
     </div>
+
+    <div class="footer">
+      GLOWD · Facial Harmony Analysis<br>
+      © 2025 GLOWD. All rights reserved.
+    </div>
   </div>
 
   <!-- ═══════════════ SAFARI/CHROME REDIRECT VIEW ═══════════════ -->
   <div class="redirect-view" id="redirectView">
+    <div class="redirect-icon">
+      <img src="app-icon.png" alt="GLOWD" width="80" height="80">
+    </div>
+    <div class="redirect-name">GLOWD</div>
+    <div class="redirect-tagline">AI Golden Ratio & Facial Harmony Analysis</div>
+
     <div class="spinner"></div>
     <div class="redirect-text">Opening App Store…</div>
 
-    <a href="https://apps.apple.com/app/glowd-golden-ratio-glow-up/id6760931929" class="appstore-badge" style="margin-top:32px;">
+    <a href="https://apps.apple.com/app/glowd-golden-ratio-glow-up/id6760931929" class="appstore-badge">
       <svg viewBox="0 0 24 24" fill="white">
         <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
       </svg>
@@ -524,34 +573,9 @@
       </div>
     </a>
 
-    <div class="redirect-text" style="margin-top: 16px; font-size: 13px;">
-      If you're not redirected, tap the badge above.
-    </div>
+    <div class="redirect-fallback">If you're not redirected, tap the badge above.</div>
 
-    <div class="features" style="margin-top: 24px;">
-      <div class="feature">
-        <div class="feature-icon">📐</div>
-        <div class="feature-label">13 Facial Ratios</div>
-        <div class="feature-desc">Science-backed analysis</div>
-      </div>
-      <div class="feature">
-        <div class="feature-icon">✨</div>
-        <div class="feature-label">Glow-Up Plan</div>
-        <div class="feature-desc">Personalized tips</div>
-      </div>
-      <div class="feature">
-        <div class="feature-icon">🔒</div>
-        <div class="feature-label">100% Private</div>
-        <div class="feature-desc">Photos never leave device</div>
-      </div>
-      <div class="feature">
-        <div class="feature-icon">⚡</div>
-        <div class="feature-label">Instant Results</div>
-        <div class="feature-desc">Score in seconds</div>
-      </div>
-    </div>
-
-    <div class="trust-row">
+    <div class="trust-row" style="margin-top: 24px;">
       <div class="trust-item">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         Safe & Secure
@@ -561,40 +585,19 @@
         Free Download
       </div>
     </div>
-  </div>
 
-  <div class="footer">
-    GLOWD · Facial Harmony Analysis<br>
-    © 2025 GLOWD. All rights reserved.
-  </div>
-</div>
-
-<!-- ═══════════════ ARROW OVERLAY ═══════════════ -->
-<div class="arrow-overlay" id="arrowOverlay">
-  <div class="arrow-overlay-bg" onclick="hideArrowGuide()"></div>
-  <div class="arrow-content">
-    <svg class="arrow-svg" viewBox="0 0 60 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M30 75 C30 75 30 20 30 20" stroke="white" stroke-width="3" stroke-linecap="round"/>
-      <path d="M18 32 L30 18 L42 32" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-      <!-- Pulsing circle at arrow tip -->
-      <circle cx="30" cy="14" r="6" fill="white" opacity="0.3">
-        <animate attributeName="r" values="6;10;6" dur="1.2s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0.3;0.1;0.3" dur="1.2s" repeatCount="indefinite"/>
-      </circle>
-      <circle cx="30" cy="14" r="4" fill="white" opacity="0.6"/>
-    </svg>
-    <div class="arrow-label">
-      Tap <strong>⋯</strong> or <strong>Share</strong> button here, then choose <strong>"Open in Safari"</strong>
+    <div class="footer">
+      GLOWD · Facial Harmony Analysis<br>
+      © 2025 GLOWD. All rights reserved.
     </div>
   </div>
-  <button class="arrow-dismiss" onclick="hideArrowGuide()">Got it</button>
+
 </div>
 
 <script>
 (function() {
   const APP_STORE_URL = 'https://apps.apple.com/app/glowd-golden-ratio-glow-up/id6760931929';
 
-  // TikTok in-app browser detection
   const ua = navigator.userAgent || '';
   const ref = document.referrer || '';
   const isTikTok =
@@ -611,22 +614,31 @@
     tiktokView.classList.add('active');
   } else {
     redirectView.classList.add('active');
-    // Auto-redirect after short delay so user sees the page briefly
     setTimeout(function() {
       window.location.href = APP_STORE_URL;
     }, 600);
   }
 })();
 
-function showArrowGuide() {
-  document.getElementById('arrowOverlay').classList.add('visible');
-  // Prevent body scroll
-  document.body.style.overflow = 'hidden';
-}
+function highlightArrow() {
+  const section = document.getElementById('arrowSection');
+  const pulse = document.getElementById('arrowPulse');
 
-function hideArrowGuide() {
-  document.getElementById('arrowOverlay').classList.remove('visible');
-  document.body.style.overflow = '';
+  // Trigger arrow highlight animation
+  section.classList.add('arrow-highlight');
+
+  // Fire pulse ring
+  pulse.classList.remove('ping');
+  void pulse.offsetWidth; // reflow to restart animation
+  pulse.classList.add('ping');
+
+  // Scroll to top so arrow is visible
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // Remove highlight class after animation completes
+  setTimeout(function() {
+    section.classList.remove('arrow-highlight');
+  }, 1600);
 }
 </script>
 
