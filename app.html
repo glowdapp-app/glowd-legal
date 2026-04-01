@@ -13,6 +13,16 @@
 <meta property="og:url" content="https://apps.apple.com/app/glowd-golden-ratio-glow-up/id6760931929">
 <meta property="og:image" content="app-icon.png">
 
+<!-- PostHog Analytics -->
+<script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="fi init Oi Fi ft Ii Ai Ri capture calculateEventProperties Ni register register_once register_for_session unregister unregister_for_session Hi getFeatureFlag getFeatureFlagPayload getFeatureFlagResult isFeatureEnabled reloadFeatureFlags updateFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey displaySurvey cancelPendingSurvey canRenderSurvey canRenderSurveyAsync qi identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException startExceptionAutocapture stopExceptionAutocapture loadToolbar get_property getSessionProperty zi Li createPersonProfile setInternalOrTestUser Bi $i Wi opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing Mi debug bt ji getPageViewId captureTraceFeedback captureTraceMetric Si".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_yb53WZkABSps1mM49aqybVMrf3HPJIjp5KXsZYhM6xO', {
+        api_host: 'https://us.i.posthog.com',
+        defaults: '2026-01-30',
+        person_profiles: 'identified_only',
+    })
+</script>
+
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
@@ -563,7 +573,7 @@
     <div class="spinner"></div>
     <div class="redirect-text">Opening App Store…</div>
 
-    <a href="https://apps.apple.com/app/glowd-golden-ratio-glow-up/id6760931929" class="appstore-badge">
+    <a href="https://apps.apple.com/app/glowd-golden-ratio-glow-up/id6760931929" class="appstore-badge" onclick="handleAppStoreBadgeClick(event)">
       <svg viewBox="0 0 24 24" fill="white">
         <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
       </svg>
@@ -596,49 +606,208 @@
 
 <script>
 (function() {
-  const APP_STORE_URL = 'https://apps.apple.com/app/glowd-golden-ratio-glow-up/id6760931929';
+  var APP_STORE_URL = 'https://apps.apple.com/app/glowd-golden-ratio-glow-up/id6760931929';
+  var pageLoadTime = Date.now();
+  var redirectAttemptTime = null;
+  var redirectFired = false;
+  var successFired = false;
 
-  const ua = navigator.userAgent || '';
-  const ref = document.referrer || '';
-  const isTikTok =
+  // ── Helpers ──
+
+  function detectDeviceType() {
+    var ua = navigator.userAgent || '';
+    if (/iPad|iPhone|iPod/.test(ua)) return 'ios';
+    if (/android/i.test(ua)) return 'android';
+    if (/Macintosh|Windows|Linux/.test(ua) && !/Mobile/.test(ua)) return 'desktop';
+    return 'other';
+  }
+
+  function getUTMParams() {
+    var params = {};
+    try {
+      var sp = new URLSearchParams(window.location.search);
+      ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function(key) {
+        var val = sp.get(key);
+        if (val) params[key] = val;
+      });
+    } catch(e) {}
+    return params;
+  }
+
+  function getSource() {
+    var utms = getUTMParams();
+    return Object.keys(utms).length > 0 ? 'paid' : 'profile';
+  }
+
+  function getDeviceProperties() {
+    var utms = getUTMParams();
+    var props = {
+      device_type: detectDeviceType(),
+      is_tiktok: isTikTok,
+      referrer: document.referrer || '',
+      user_agent: navigator.userAgent || '',
+      screen_width: screen.width,
+      screen_height: screen.height,
+      language: navigator.language || '',
+      source: getSource(),
+      connection_type: (navigator.connection && navigator.connection.effectiveType) || 'unknown'
+    };
+    // Merge UTM params
+    for (var key in utms) {
+      props[key] = utms[key];
+    }
+    return props;
+  }
+
+  // ── TikTok detection ──
+
+  var ua = navigator.userAgent || '';
+  var ref = document.referrer || '';
+  var isTikTok =
     ua.includes('musical_ly') ||
     ua.includes('TikTok') ||
     ua.includes('BytedanceWebview') ||
     ua.includes('ByteLocale') ||
     ref.includes('tiktok');
 
-  const tiktokView = document.getElementById('tiktokView');
-  const redirectView = document.getElementById('redirectView');
+  // ── Redirect success/failure detection ──
+
+  function onPageHidden(eventType) {
+    if (!redirectAttemptTime || successFired) return;
+    successFired = true;
+    var elapsed = Date.now() - redirectAttemptTime;
+    posthog.capture('appstore_redirect_success', {
+      method: eventType,
+      time_to_redirect_ms: elapsed
+    });
+  }
+
+  document.addEventListener('visibilitychange', function() {
+    if (document.visibilityState === 'hidden') {
+      onPageHidden('visibilitychange');
+    }
+    // User returned from App Store
+    if (document.visibilityState === 'visible' && redirectAttemptTime) {
+      var timeAway = Date.now() - (redirectAttemptTime || pageLoadTime);
+      posthog.capture('page_engagement', {
+        time_away_ms: timeAway,
+        total_time_on_page: Math.round((Date.now() - pageLoadTime) / 1000)
+      });
+    }
+  });
+
+  window.addEventListener('pagehide', function() {
+    onPageHidden('pagehide');
+  });
+
+  window.addEventListener('blur', function() {
+    onPageHidden('blur');
+  });
+
+  // bfcache restore
+  window.addEventListener('pageshow', function(e) {
+    if (e.persisted && redirectAttemptTime) {
+      var timeAway = Date.now() - redirectAttemptTime;
+      posthog.capture('page_engagement', {
+        time_away_ms: timeAway,
+        total_time_on_page: Math.round((Date.now() - pageLoadTime) / 1000)
+      });
+    }
+  });
+
+  function attemptRedirect(method) {
+    redirectAttemptTime = Date.now();
+    successFired = false;
+
+    posthog.capture('appstore_redirect_attempt', {
+      method: method,
+      redirect_url: APP_STORE_URL
+    });
+
+    // Failure timeout — if page still visible after 2s, redirect didn't work
+    setTimeout(function() {
+      if (!successFired && document.visibilityState === 'visible') {
+        posthog.capture('appstore_redirect_failure', {
+          reason: 'timeout',
+          time_waited_ms: Date.now() - redirectAttemptTime
+        });
+      }
+    }, 2000);
+
+    try {
+      window.location.href = APP_STORE_URL;
+    } catch(e) {
+      posthog.capture('appstore_redirect_failure', {
+        reason: 'error',
+        error_message: e.message || String(e),
+        time_waited_ms: Date.now() - redirectAttemptTime
+      });
+    }
+  }
+
+  // ── Track page view ──
+
+  posthog.capture('landing_page_view', getDeviceProperties());
+
+  // ── Show correct view ──
+
+  var tiktokView = document.getElementById('tiktokView');
+  var redirectView = document.getElementById('redirectView');
 
   if (isTikTok) {
     tiktokView.classList.add('active');
   } else {
     redirectView.classList.add('active');
     setTimeout(function() {
-      window.location.href = APP_STORE_URL;
+      attemptRedirect('auto');
     }, 600);
   }
+
+  // ── Expose functions for onclick handlers ──
+
+  window._glowdTracking = {
+    pageLoadTime: pageLoadTime,
+    getDeviceProperties: getDeviceProperties,
+    attemptRedirect: attemptRedirect,
+    isTikTok: isTikTok
+  };
 })();
 
 function highlightArrow() {
-  const section = document.getElementById('arrowSection');
-  const pulse = document.getElementById('arrowPulse');
+  var section = document.getElementById('arrowSection');
+  var pulse = document.getElementById('arrowPulse');
+
+  // Track CTA click
+  var props = window._glowdTracking.getDeviceProperties();
+  props.view_type = 'tiktok';
+  props.time_on_page = Math.round((Date.now() - window._glowdTracking.pageLoadTime) / 1000);
+  posthog.capture('download_button_click', props);
 
   // Trigger arrow highlight animation
   section.classList.add('arrow-highlight');
 
   // Fire pulse ring
   pulse.classList.remove('ping');
-  void pulse.offsetWidth; // reflow to restart animation
+  void pulse.offsetWidth;
   pulse.classList.add('ping');
 
   // Scroll to top so arrow is visible
   window.scrollTo({ top: 0, behavior: 'smooth' });
 
-  // Remove highlight class after animation completes
   setTimeout(function() {
     section.classList.remove('arrow-highlight');
   }, 1600);
+}
+
+function handleAppStoreBadgeClick(e) {
+  e.preventDefault();
+
+  var props = window._glowdTracking.getDeviceProperties();
+  props.view_type = 'redirect';
+  props.time_on_page = Math.round((Date.now() - window._glowdTracking.pageLoadTime) / 1000);
+  posthog.capture('download_button_click', props);
+
+  window._glowdTracking.attemptRedirect('manual');
 }
 </script>
 
