@@ -1,0 +1,20 @@
+# GLOWD
+
+> GLOWD is an iPhone face score app that maps facial landmarks, explains 11 facial ratios, and creates a personalized glow-up plan.
+
+## Primary pages
+- [GLOWD home](https://glowd.tech/): Product overview, app screens, privacy summary, and FAQ.
+- [Methodology](https://glowd.tech/methodology): Landmark detection, ratio calculation, scoring curve, reference context, privacy, and limitations.
+- [Facial ratios](https://glowd.tech/facial-ratios): Plain-language definitions for the 11 ratios shown in the app.
+
+## Product facts
+- Platform: iPhone, iOS 17 or later.
+- Face mapping: dense MediaPipe landmark mesh processed on device.
+- Visible report: 11 facial ratios with measurement context.
+- Privacy: face photos and facial landmark analysis are not uploaded for processing.
+- Positioning: entertainment and educational guidance, not medical advice or an objective definition of beauty.
+
+## Official app
+- App Store: https://apps.apple.com/app/glowd-face-score-glow-up/id6760931929
+- Privacy: https://glowd.tech/privacy-policy.html
+- Support: mailto:glowdapp@gmail.com
